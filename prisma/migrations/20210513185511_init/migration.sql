@@ -81,21 +81,11 @@ CREATE TABLE `Task` (
     `name` VARCHAR(191),
     `description` VARCHAR(191),
     `archived` BOOLEAN,
+    `start_date` DATETIME(3),
+    `end_date` DATETIME(3),
     `projetId` INTEGER NOT NULL,
 
     UNIQUE INDEX `Task_projetId_unique`(`projetId`),
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
-CREATE TABLE `TaskDeadLine` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(191),
-    `start_date` DATETIME(3),
-    `end_date` DATETIME(3),
-    `taskId` INTEGER NOT NULL,
-
-    UNIQUE INDEX `TaskDeadLine_taskId_unique`(`taskId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -116,6 +106,3 @@ ALTER TABLE `MockUp` ADD FOREIGN KEY (`projetId`) REFERENCES `Porjet`(`id`) ON D
 
 -- AddForeignKey
 ALTER TABLE `Task` ADD FOREIGN KEY (`projetId`) REFERENCES `Porjet`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE `TaskDeadLine` ADD FOREIGN KEY (`taskId`) REFERENCES `Task`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;

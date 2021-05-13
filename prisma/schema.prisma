@@ -79,16 +79,9 @@ model Task {
   name    String?
   description   String?
   archived Boolean?
-  projet Porjet @relation(fields: [projetId], references:[id])
-  projetId Int
-  taskdeadline TaskDeadLine?
-}
-
-model TaskDeadLine {
-  id      Int      @default(autoincrement()) @id
-  name    String?
   start_date  DateTime?
   end_date DateTime?
-  task Task @relation(fields: [taskId], references:[id])
-  taskId Int
+  projet Porjet @relation(fields: [projetId], references:[id])
+  projetId Int
+ 
 }

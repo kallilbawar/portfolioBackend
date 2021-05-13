@@ -1,0 +1,6 @@
+#  Custom types
+
+
+type Query {
+  allUsers: [User!]!
+}
