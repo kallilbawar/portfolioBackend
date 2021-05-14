@@ -1,4 +1,5 @@
 import { writer } from "repl";
+import { UserService } from "../service/UserService";
 
 class UserApi
 {

@@ -1,5 +1,5 @@
 
-class UserService
+export class UserService
 {
     RegisterUser(data)
     {

@@ -1,64 +1,40 @@
-import * as express from 'express';
-import {graphqlHTTP} from 'express-graphql';
-import {buildSchema} from 'graphql';
-import {resolvers} from './graphql/resolvers';
-import { PrismaClient } from '@prisma/client'
-import { makeExecutableSchema } from '@graphql-tools/schema';
-
-const app = express();
-
-const typeDefs = `
-  type User {
-    email: String!
-    name: String
-  }
-  type Query {
-    allUsers: [User!]!
-  }
-`;
+import { resolvers } from "./apollo_graphql/resolvers";
+import { typeDefs } from "./apollo_graphql/typeDefs";
+import { ApolloServer, gql} from "apollo-server";
+import { PrismaClient } from '@prisma/client';
 
 
-export const schema = makeExecutableSchema({
-  resolvers,
-  typeDefs,
-});
 
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  graphiql: true,
-}));
+// The ApolloServer constructor requires two parameters: your schema
+// definition and your set of resolvers.
+const server = new ApolloServer({ typeDefs, resolvers });
 
-app.listen(4000, () => {
-  console.log('Running...');
+// The `listen` method launches a web server.
+server.listen().then(({ url }) => {
+  console.log(`🚀  Server ready at ${url}`);
 });
 
 
+// const prisma = new PrismaClient();
 
+// async function main() {
+//   await prisma.contract.create({
+//     data: {
+//       name: "Alice",
+//       Number: 154454,
+//       valid: true,
+//       start_date: "1992-10-09T00:00:00Z",
+//       end_date:"1992-10-09T00:00:00Z",
+//       userId: 1
+//     },
+//   });
+// }
 
+// main()
+//   .catch((e) => {
+//     throw e;
+//   })
+//   .finally(async () => {
+//     await prisma.$disconnect();
+//   });
 
-// app.get('/list', userAPI.List.bind(userAPI));
-// app.get('/list', userAPI.Delete.bind(userAPI));
-/*
- const prisma = new PrismaClient()
-
-async function main() {
-    await prisma.user.create({
-      data: {
-        name: 'Alice',
-        email: 'alice@prisma.io',
-        valid: true,
-        password: 'totototo'
-       
-      }
-    })
-
-  }
-
-main()
-  .catch((e) => {
-    throw e
-  })
-  .finally(async () => {
-    await prisma.$disconnect()
-  })
-*/  

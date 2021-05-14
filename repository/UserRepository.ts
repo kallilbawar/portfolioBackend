@@ -4,15 +4,19 @@ class UserRepository {
 
     Create()
     {
-        // ORM PRISMA
-
-        // client.user.create({
-        //     §///
-        // })
+       client.user.create({
+        data: {
+            name: "Alice",
+            email: "alice@prisma.io",
+            valid: true,
+            password: "totototo",
+          },
+       })
     }
 
     Delete()
     {
+        
 
     }
 
