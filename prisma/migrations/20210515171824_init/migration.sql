@@ -13,15 +13,14 @@ CREATE TABLE `User` (
 -- CreateTable
 CREATE TABLE `Contract` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `Number` INTEGER NOT NULL,
+    `number` INTEGER NOT NULL,
     `name` VARCHAR(191),
     `valid` BOOLEAN,
     `start_date` DATETIME(3) NOT NULL,
     `end_date` DATETIME(3) NOT NULL,
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Contract.Number_unique`(`Number`),
-    UNIQUE INDEX `Contract_userId_unique`(`userId`),
+    UNIQUE INDEX `Contract.number_unique`(`number`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -33,34 +32,31 @@ CREATE TABLE `Notification` (
     `seen` BOOLEAN,
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Notification_userId_unique`(`userId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Biling` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `Number` INTEGER,
+    `number` INTEGER,
     `description` VARCHAR(191),
     `date` DATETIME(3),
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Biling.Number_unique`(`Number`),
-    UNIQUE INDEX `Biling_userId_unique`(`userId`),
+    UNIQUE INDEX `Biling.number_unique`(`number`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Porjet` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `Number` INTEGER,
+    `number` INTEGER,
     `description` VARCHAR(191),
     `start_date` DATETIME(3),
     `end_date` DATETIME(3),
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Porjet.Number_unique`(`Number`),
-    UNIQUE INDEX `Porjet_userId_unique`(`userId`),
+    UNIQUE INDEX `Porjet.number_unique`(`number`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

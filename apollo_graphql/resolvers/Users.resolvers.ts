@@ -5,6 +5,12 @@ export const UsersResolvers = {
     allUsers: () => {
       return client.user.findMany();
     },
+    getUser: (parent, args, context, info) => { 
+      return client.user.findUnique({
+        where:{id: args.id}
+      });
+    },
+  
   
   },
 }

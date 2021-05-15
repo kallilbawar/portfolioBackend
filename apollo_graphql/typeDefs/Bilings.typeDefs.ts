@@ -4,12 +4,13 @@ export const BilingsTypeDefs = gql`
 
 type Biling {
   id: Int!
-  Number: Int!
-  description: String
+  number: Int!
+  description: String!
+  date: String!
+  userId: User!
 }
 
 extend type Query {
   allBilings: [Biling!]!
-
 }
 `;

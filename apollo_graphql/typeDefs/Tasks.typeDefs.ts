@@ -4,7 +4,7 @@ export const TasksTypeDefs = gql`
 
 type Task {
   id: Int!
-  Number: Int!
+  number: Int!
   description: String
 }
 

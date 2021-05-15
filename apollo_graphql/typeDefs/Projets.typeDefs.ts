@@ -4,12 +4,12 @@ export const ProjetsTypeDefs = gql`
 
 type Projet {
   id: Int!
-  Number: Int!
+  number: Int!
   description: String
 }
 
 extend type Query {
-  allBilings: [Projet!]!
+  allProjets: [Projet!]!
 
 }
 `;

@@ -5,7 +5,9 @@ export const ContractsTypeDefs = gql`
 type Contract {
   id: Int!
   name: String!
-  userId: User!
+  number: Int!
+  user: User!
+  userId: Int!
 }
 
 type Query {
