@@ -1,5 +1,7 @@
-import { resolvers } from "./apollo_graphql/resolvers";
-import { typeDefs } from "./apollo_graphql/typeDefs";
+import { UsersResolvers } from "./apollo_graphql/resolvers/Users.resolvers";
+import { ContractsResolvers} from "./apollo_graphql/resolvers/Contracts.resolvers";
+import {UsersTypeDefs} from "./apollo_graphql/typeDefs/User.typeDefs";
+import { ContractsTypeDefs } from "./apollo_graphql/typeDefs/Contracts.typeDefs";
 import { ApolloServer, gql} from "apollo-server";
 import { PrismaClient } from '@prisma/client';
 
@@ -7,7 +9,7 @@ import { PrismaClient } from '@prisma/client';
 
 // The ApolloServer constructor requires two parameters: your schema
 // definition and your set of resolvers.
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs:[UsersTypeDefs, ContractsTypeDefs], resolvers:[UsersResolvers, ContractsResolvers] });
 
 // The `listen` method launches a web server.
 server.listen().then(({ url }) => {

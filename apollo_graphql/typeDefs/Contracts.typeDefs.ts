@@ -1,13 +1,15 @@
 import {gql} from "apollo-server";
 
-export const typeDefs = gql`
+export const ContractsTypeDefs = gql`
 
 type Contract {
   id: Int!
   name: String!
+  userId: User!
 }
 
 type Query {
-  allUsers: [User!]!
+  allContracts: [Contract!]!
+
 }
 `;

@@ -31,8 +31,9 @@ model Contract {
   valid   Boolean?
   start_date DateTime
   end_date DateTime
-  user User @relation(fields: [userId], references:[id])
   userId Int
+  user User @relation(fields: [userId], references:[id])
+  
 }
 
 model Notification {

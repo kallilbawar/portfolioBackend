@@ -1,6 +1,6 @@
-import { client } from "../prisma/client";
+import { client } from "../../prisma/client";
 
-export const resolvers = {
+export const UsersResolvers = {
   Query: {
     allUsers: () => {
       return client.user.findMany();
