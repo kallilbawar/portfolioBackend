@@ -1,25 +1,30 @@
-import { writer } from "repl";
-import { UserService } from "../service/UserService";
+import IO from "./IO";
+import userRepo from "../repository/UserRepository";
 
-class UserApi
-{
-    constructor(userService:UserService) {
+export default {
+  // GraphQL needs promise
+  // Rest needs, HTTP status code
 
-    }
+  listUsers: (io: IO): Promise<any> => {
+    // Output
+    return userRepo.getAllUsers();
+  },
 
-    // // GET /list
-    // List(req, res)
-    // {
+  getUser: (io: IO): Promise<any> => {
+    // Input
+    const userID: number = io.getInput("id");
 
-    //     const response = userService.List(input.get('??'))
-        
-    //     // JSON
-    //     writer.Write(response);
-    // }
+    // Output
+    return userRepo.getOneUser(userID);
+  },
 
-    // POST / DELET
-    Delete()
-    {
+  createUser: (io: IO): Promise<any> => {
 
-    }
-}
+    //Input
+
+    //Data
+
+    //Output
+    return;
+  },
+};

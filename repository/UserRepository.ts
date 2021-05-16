@@ -1,28 +1,15 @@
 import {client} from '../prisma/client';
 
-class UserRepository {
+export default {
 
-    Create()
-    {
-       client.user.create({
-        data: {
-            name: "Alice",
-            email: "alice@prisma.io",
-            valid: true,
-            password: "totototo",
-          },
-       })
+    getAllUsers : () => {
+
+        return client.user.findMany()
+    },
+
+    getOneUser : (id) => {
+        return client.user.findUnique({
+            where : { id : id}
+        })
     }
-
-    Delete()
-    {
-        
-
-    }
-
-    Update()
-    {
-
-    }
-
 }
