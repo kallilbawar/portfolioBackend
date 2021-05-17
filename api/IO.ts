@@ -1,7 +1,7 @@
 
 export default interface IO {
 
-    getInput(param:String);
+    getInput(param:String)
     getHeader(headerName: String)
-    writeOutput(response:Promise<any>);
+    writeOutput(response:Promise<any>)
 }

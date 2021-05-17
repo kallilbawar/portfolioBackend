@@ -1,29 +1,30 @@
-import {client} from '../prisma/client';
+import { client } from "../prisma/client";
 
+//repository pattern
 export default {
+  getAllUsers: () => {
+    return client.user.findMany();
+  },
 
-    getAllUsers : () => {
+  getOneUser: (id) => {
+    return client.user.findUnique({
+      where: { id: id },
+    });
+  },
 
-        return client.user.findMany()
-    },
+  createUser: (name, email, password) => {
+    return client.user.create({
+      data: {
+        name: name,
+        email: email,
+        password: password,
+      },
+    });
+  },
 
-    getOneUser : (id) => {
-        return client.user.findUnique({
-            where : { id : id}
-        })
-    },
-
-    createUser : (name, email, password)=>{
-
-        console.log(name, email, password);
-        
-        return client.user.create({
-
-            data :{
-                name: name,
-                email: email,
-                password: password
-            }
-        })
-    }
-}
+  deleteUser: (id) => {
+    return client.user.delete({
+      where: { id: id },
+    });
+  },
+};

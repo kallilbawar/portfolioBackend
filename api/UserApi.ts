@@ -21,9 +21,9 @@ export default {
   createUser: (io: IO): Promise<any> => {
 
     //Input
-    const nameID: number = io.getInput("name");
-    const emailID: number = io.getInput("email");
-    const passwordID: number = io.getInput("password");
+    const nameID: string = io.getInput("name");
+    const emailID: string = io.getInput("email");
+    const passwordID: string = io.getInput("password");
 
     //Data
 
@@ -31,4 +31,10 @@ export default {
     return userRepo.createUser(nameID, emailID, passwordID);
   },
   
+  deleteUser : (io: IO): Promise<any> =>{
+    
+    const ID: number = io.getInput("id");
+    return userRepo.deleteUser(ID);
+  }
+
 };

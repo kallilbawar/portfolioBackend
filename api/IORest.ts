@@ -29,6 +29,7 @@ class IORest implements IO
             this.response.status(500).send(JSON.stringify(error));
         });
     }
+   
 }
 
 export default IORest;

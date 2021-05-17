@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from "apollo-server";
-import * as Resolvers from "./apollo_graphql/resolvers";
-import * as TypeDefs from  "./apollo_graphql/typeDefs";
+import * as Resolvers from "./graphql/resolvers";
+import * as TypeDefs from  "./graphql/typeDefs";
 import { PrismaClient } from "@prisma/client";
 import userApi from "./api/UserApi";
 import IORest from "./api/IORest";

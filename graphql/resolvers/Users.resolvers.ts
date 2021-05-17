@@ -23,13 +23,8 @@ export const UsersResolvers = {
   Mutation: {
     
     createUser: gqlHandler(userApi.createUser),
-
-    updateUser: (parent, args, context, info) => {},
-    deleteUser: (parent, args, context, info) => {
-      return client.user.delete({
-        where:{id: args.id}
-      })
-    },
+    updateUser: gqlHandler(userApi.createUser),
+    deleteUser: gqlHandler(userApi.createUser),
     loginUser: (parent, args, context, info) => {
       console.log(args.email);
     },
