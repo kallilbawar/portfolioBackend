@@ -16,15 +16,14 @@ export const UsersResolvers = {
   Query: {
 
     listUsers : gqlHandler(userApi.listUsers),
+    
     getUser: gqlHandler(userApi.getUser),
-
-    allUsers: () => {
-      return client.user.findMany();
-    },
   },
 
   Mutation: {
-    createUser: (parent, args, context, info) => {},
+    
+    createUser: gqlHandler(userApi.createUser),
+
     updateUser: (parent, args, context, info) => {},
     deleteUser: (parent, args, context, info) => {
       return client.user.delete({

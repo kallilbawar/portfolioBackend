@@ -11,5 +11,19 @@ export default {
         return client.user.findUnique({
             where : { id : id}
         })
+    },
+
+    createUser : (name, email, password)=>{
+
+        console.log(name, email, password);
+        
+        return client.user.create({
+
+            data :{
+                name: name,
+                email: email,
+                password: password
+            }
+        })
     }
 }

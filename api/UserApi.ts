@@ -21,10 +21,14 @@ export default {
   createUser: (io: IO): Promise<any> => {
 
     //Input
+    const nameID: number = io.getInput("name");
+    const emailID: number = io.getInput("email");
+    const passwordID: number = io.getInput("password");
 
     //Data
 
     //Output
-    return;
+    return userRepo.createUser(nameID, emailID, passwordID);
   },
+  
 };
