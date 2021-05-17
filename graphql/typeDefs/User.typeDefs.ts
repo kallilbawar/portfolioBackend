@@ -16,7 +16,7 @@ extend type Query {
  }
 
 type Mutation{
-  createUser(name: String!, email: String!, password: String! ): User
+  createUser(name: String!, email: String!, password: String! ): AuthPayLoad
   updateUser(id: Int!, name: String!, email: String!, password: String! ): User
   deleteUser(id: Int!): User
   loginUser(email: String!, password: String!): User
@@ -26,4 +26,9 @@ input Login{
   email: String!
   password: String!
 }
+
+type AuthPayLoad {
+  token: String!
+}
+
 `;

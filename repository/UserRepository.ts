@@ -12,12 +12,15 @@ export default {
     });
   },
 
-  createUser: (name, email, password) => {
+  createUser: ({nameID, emailID, passwordID}) => {
+      
+    console.log(nameID, emailID, passwordID);
+    
     return client.user.create({
       data: {
-        name: name,
-        email: email,
-        password: password,
+        name: nameID,
+        email: emailID,
+        password: passwordID,
       },
     });
   },
