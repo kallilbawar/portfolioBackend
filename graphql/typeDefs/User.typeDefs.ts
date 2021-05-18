@@ -12,14 +12,14 @@ type User {
 extend type Query {
   allUsers: [User!]!
   getUser(id: Int!): User
+  getOneUserByEmail(email: String!, password: String!): AuthPayLoad
   listUsers: [User!]!
  }
 
 type Mutation{
-  createUser(name: String!, email: String!, password: String! ): AuthPayLoad
+  createUser(name: String!, email: String!, password: String! ): User
   updateUser(id: Int!, name: String!, email: String!, password: String! ): User
   deleteUser(id: Int!): User
-  loginUser(email: String!, password: String!): User
 }
 
 input Login{

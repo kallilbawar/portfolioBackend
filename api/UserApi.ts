@@ -1,8 +1,7 @@
 import IO from "./IO";
 import * as Joi from "joi";
 import userRepo from "../repository/UserRepository";
-import { any } from "joi";
-import bcrypt from "bcrypt";
+import * as bcrypt from "bcrypt";
 import { UserInputError } from "apollo-server";
 import * as jwt from "jsonwebtoken";
 
@@ -33,27 +32,36 @@ export default {
     const schema = Joi.object({
       nameID: Joi.string().max(15),
       emailID: Joi.string().email(),
-      passwordID: Joi.string().min(8)
+      passwordID: Joi.string().min(8),
     });
 
-    const { value, error } = schema.validate({ nameID: nameID, emailID: emailID, passwordID: passwordID });
+    const { value, error } = schema.validate({
+      nameID: nameID,
+      emailID: emailID,
+      passwordID: bcrypt.hashSync(passwordID, 3),
+    });
 
     if (error) throw new UserInputError("failed to create user");
 
-    //console.log(value.nameID);
-    
-    //const passwordCrypt = bcrypt.hashSync(passwordID, 3)
-    
-     const user =userRepo.createUser(value);
-     
-     return {
-       token : jwt.sign(user, "supersecret")
-      };
+    return userRepo.createUser(value);
   },
 
   deleteUser: (io: IO): Promise<any> => {
     const ID: number = io.getInput("id");
     return userRepo.deleteUser(ID);
   },
-  
+
+  login: async (io: IO): Promise<any> => {
+    const emailID: string = io.getInput("email");
+    const passwordID: string = io.getInput("password");
+
+    const user = userRepo.getOneUserByEmail(emailID);
+    
+    console.log((await user).email);
+    if (!(await user).email) throw new UserInputError("failed to create user");
+    const isMatch = bcrypt.compareSync(passwordID, (await user).password);
+    if (!isMatch) throw new Error("failed password");
+
+    return { token: jwt.sign(user, "supersecret") };
+  },
 };
