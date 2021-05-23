@@ -46,9 +46,38 @@ export default {
     return userRepo.createUser(value);
   },
 
-  deleteUser: (io: IO): Promise<any> => {
+  deleteUser: async (io: IO): Promise<any> => {
     const ID: number = io.getInput("id");
     return userRepo.deleteUser(ID);
+  },
+
+  updateUser : async (io: IO): Promise<any> => {
+
+ //Input
+ const ID: string = io.getInput("id");
+ const nameID: string = io.getInput("name");
+ const emailID: string = io.getInput("email");
+ const passwordID: string = io.getInput("password");
+
+ //Data
+ const schema = Joi.object({
+   ID: Joi.number(),
+   nameID: Joi.string().max(15),
+   emailID: Joi.string().email(),
+   passwordID: Joi.string().min(8),
+ });
+
+ const { value, error } = schema.validate({
+   ID: ID,
+   nameID: nameID,
+   emailID: emailID,
+   passwordID: bcrypt.hashSync(passwordID, 3),
+ });
+
+ if (error) throw new UserInputError("failed to create user");
+
+ return userRepo.updateUser(value);
+
   },
 
   login: async (io: IO): Promise<any> => {

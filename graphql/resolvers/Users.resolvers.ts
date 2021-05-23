@@ -18,7 +18,7 @@ export const UsersResolvers = {
 
   Mutation: {
     createUser: gqlHandler(userApi.createUser),
-    updateUser: gqlHandler(userApi.createUser),
+    updateUser: gqlHandler(userApi.updateUser),
     deleteUser: gqlHandler(userApi.deleteUser),
   },
 };

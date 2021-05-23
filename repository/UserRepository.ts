@@ -9,7 +9,7 @@ export default {
   getOneUserByEmail: (email) => {
     return client.user.findUnique({
       where: {
-        email: email
+        email: email,
       },
     });
   },
@@ -21,9 +21,21 @@ export default {
   },
 
   createUser: ({ nameID, emailID, passwordID }) => {
-    console.log(nameID, emailID, passwordID);
-
     return client.user.create({
+      data: {
+        name: nameID,
+        email: emailID,
+        password: passwordID,
+      },
+    });
+  },
+
+  updateUser: ({ ID, nameID, emailID, passwordID }) => {
+    return client.user.update({
+      where: {
+        id: ID,
+      },
+
       data: {
         name: nameID,
         email: emailID,
