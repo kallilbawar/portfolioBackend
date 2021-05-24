@@ -84,12 +84,13 @@ export default {
     const emailID: string = io.getInput("email");
     const passwordID: string = io.getInput("password");
 
-    const user = userRepo.getOneUserByEmail(emailID);
-    
-    console.log((await user).email);
-    if (!(await user).email) throw new UserInputError("failed to create user");
-    const isMatch = bcrypt.compareSync(passwordID, (await user).password);
-    if (!isMatch) throw new Error("failed password");
+    const user = await userRepo.getOneUserByEmail(emailID);
+    if (!user)
+      throw new UserInputError("Invalid email address");
+
+    const isMatch = bcrypt.compareSync(passwordID, user.password);
+    if (!isMatch)
+      throw new UserInputError("Invalid password");
 
     return { token: jwt.sign(user, "supersecret") };
   },
