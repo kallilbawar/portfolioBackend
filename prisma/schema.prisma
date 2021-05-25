@@ -19,8 +19,8 @@ model User {
   password String?
   contrat Contract[]
   notification Notification[]
-  biling Biling[]
-  projet Porjet[]
+  biling Billing[]
+  projet Projet[]
 
 }
 
@@ -28,7 +28,7 @@ model Contract {
   id      Int      @default(autoincrement()) @id
   number  Int      @unique
   name    String?
-  valid   Boolean?
+  valid   Boolean? @default(false)
   start_date DateTime
   end_date DateTime
   user User? @relation(fields: [userId], references:[id]) 
@@ -46,7 +46,7 @@ model Notification {
   userId Int
 }
 
-model Biling {
+model Billing {
   id      Int      @default(autoincrement()) @id
   number    Int?   @unique
   description   String?
@@ -55,7 +55,7 @@ model Biling {
   userId Int
 }
 
-model Porjet {
+model Projet {
   id      Int      @default(autoincrement()) @id
   number    Int?   @unique
   description   String?
@@ -71,7 +71,7 @@ model MockUp {
   id      Int      @default(autoincrement()) @id
   name    String? 
   path   String?
-  projet Porjet? @relation(fields: [projetId], references:[id])
+  projet Projet? @relation(fields: [projetId], references:[id])
   projetId Int
 }
 
@@ -83,7 +83,7 @@ model Task {
   archived Boolean?
   start_date  DateTime?
   end_date DateTime?
-  projet Porjet? @relation(fields: [projetId], references:[id])
+  projet Projet? @relation(fields: [projetId], references:[id])
   projetId Int
  
 }

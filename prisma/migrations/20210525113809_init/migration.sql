@@ -15,7 +15,7 @@ CREATE TABLE `Contract` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `number` INTEGER NOT NULL,
     `name` VARCHAR(191),
-    `valid` BOOLEAN,
+    `valid` BOOLEAN DEFAULT false,
     `start_date` DATETIME(3) NOT NULL,
     `end_date` DATETIME(3) NOT NULL,
     `userId` INTEGER NOT NULL,
@@ -36,19 +36,19 @@ CREATE TABLE `Notification` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Biling` (
+CREATE TABLE `Billing` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `number` INTEGER,
     `description` VARCHAR(191),
     `date` DATETIME(3),
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Biling.number_unique`(`number`),
+    UNIQUE INDEX `Billing.number_unique`(`number`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `Porjet` (
+CREATE TABLE `Projet` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `number` INTEGER,
     `description` VARCHAR(191),
@@ -56,7 +56,7 @@ CREATE TABLE `Porjet` (
     `end_date` DATETIME(3),
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `Porjet.number_unique`(`number`),
+    UNIQUE INDEX `Projet.number_unique`(`number`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -92,13 +92,13 @@ ALTER TABLE `Contract` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DEL
 ALTER TABLE `Notification` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Biling` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Billing` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Porjet` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Projet` ADD FOREIGN KEY (`userId`) REFERENCES `User`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `MockUp` ADD FOREIGN KEY (`projetId`) REFERENCES `Porjet`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `MockUp` ADD FOREIGN KEY (`projetId`) REFERENCES `Projet`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `Task` ADD FOREIGN KEY (`projetId`) REFERENCES `Porjet`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Task` ADD FOREIGN KEY (`projetId`) REFERENCES `Projet`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
