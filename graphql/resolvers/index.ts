@@ -5,3 +5,4 @@ export { MockUpsResolvers } from "./MockUps.resolvers";
 export { ProjetsResolvers } from "./Projets.resolvers";
 export { TasksResolvers } from "./Tasks.resolvers";
 export { BilingsResolvers } from "./Bilings.resolvers";
+export {GraphQLType} from "./GraphQLType";

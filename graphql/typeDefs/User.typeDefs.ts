@@ -22,10 +22,10 @@ type Mutation{
   deleteUser(id: Int!): User
 }
 
-input Login{
-  email: String!
-  password: String!
-}
+# input Login{
+#   email: String!
+#   password: String!
+# }
 
 type AuthPayLoad {
   token: String!

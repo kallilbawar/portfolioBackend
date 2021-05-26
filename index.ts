@@ -1,9 +1,9 @@
-import { ApolloServer, gql } from "apollo-server";
+import { ApolloServer} from "apollo-server";
 import * as Resolvers from "./graphql/resolvers";
 import * as TypeDefs from  "./graphql/typeDefs";
-import { PrismaClient } from "@prisma/client";
 import userApi from "./api/UserApi";
 import IORest from "./api/IORest";
+
 import * as express from 'express';
 
 const typeDefs = {}
@@ -28,7 +28,10 @@ const server = new ApolloServer({
     Resolvers.ProjetsResolvers,
     Resolvers.TasksResolvers,
     Resolvers.BilingsResolvers,
+    Resolvers.GraphQLType,
+        
   ],
+  
   context: req =>({ req:"toto" })
 });
 
