@@ -12,6 +12,7 @@ scalar GQLDateTime
     start_date: GQLDateTime!
     end_date: GQLDateTime!
     userId: Int!
+    user: User!
   }
 
  type Query {

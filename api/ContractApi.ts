@@ -72,6 +72,7 @@ export default {
 
     //Data
     const schema = Joi.object({
+      ID: Joi.number(),
       number: Joi.number().min(5),
       name: Joi.string().min(5),
       start_date: Joi.date(),
@@ -88,7 +89,8 @@ export default {
       userId: userId,
     });
 
-    if (error) throw new UserInputError("failed to create Contract");
+
+    if (error) throw new UserInputError("failed to update Contract");
 
     return ContractRepo.updateContract(value);
   },

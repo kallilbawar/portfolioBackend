@@ -2,19 +2,22 @@ import { client } from "../prisma/client";
 
 export default {
   getAllContracts: () => {
-    return client.contract.findMany();
+    return client.contract.findMany({
+      include: { user: true },
+    });
   },
 
   getOneContract: (id) => {
     return client.contract.findUnique({
       where: { id: id },
+      include: { user: true },
     });
   },
 
-  createContract: ({number, name, start_date, end_date, userId}) => {
+  createContract: ({ number, name, start_date, end_date, userId }) => {
     return client.contract.create({
       data: {
-         number: number,
+        number: number,
         name: name,
         start_date: start_date,
         end_date: end_date,
