@@ -85,6 +85,8 @@ export default {
     const passwordID: string = io.getInput("password");
 
     const user = await userRepo.getOneUserByEmail(emailID);
+    console.log(user);
+    
     if (!user)
       throw new UserInputError("Invalid email address");
 

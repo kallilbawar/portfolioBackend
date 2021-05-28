@@ -1,9 +1,7 @@
 import IO from "./IO";
 import * as Joi from "joi";
 import ContractRepo from "../repository/ContractRepository";
-import * as bcrypt from "bcrypt";
 import { UserInputError } from "apollo-server";
-import * as jwt from "jsonwebtoken";
 
 
 
@@ -13,7 +11,7 @@ export default {
 
   listContracts: async (io: IO): Promise<any> => {
     // Output
-    return ContractRepo.getAllContracts();
+    return await ContractRepo.getAllContracts();
   },
 
   getContract: (io: IO): Promise<any> => {
